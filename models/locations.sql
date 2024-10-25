@@ -1,0 +1,5 @@
+CREATE TABLE locations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    region VARCHAR(100) NOT NULL,
+    price INT NOT NULL
+);
