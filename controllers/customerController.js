@@ -1,12 +1,15 @@
 const customerRepository = require('../repositories/customerRepository');
 
 const customerController = {
-    
+
     getAllCustomers: async (req, res) => {
         try {
-
+            const customers = await customerRepository.getAllCustomers();
+            return res.status(200).json(customers);
         } catch (error) {
-
+            return res
+                .status(500)
+                .json({ error: "Failed to retrieve customers", details: error.message });
         }
     },
 

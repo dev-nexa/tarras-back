@@ -1,13 +1,12 @@
-const db = require('../config/db');
+const pool = require('../config/db');
 
 const customerRepository = {
     
     getAllCustomers: async () => {
-        try {
-
-      } catch (error) {
-
-      }
+      const connection = await pool.getConnection();
+      const [rows] = await connection.query("SELECT * FROM customers");
+      connection.release();
+      return rows;
     },
 
     getCustomerById: async (id) => {

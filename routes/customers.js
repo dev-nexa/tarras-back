@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const customerController = require('./../controllers/customerController');
 
-// router.get('/customers', customerController.getAllCustomers);
+router.get('/customers', customerController.getAllCustomers);
 
 // router.get('/customers/:id', customerController.getCustomerById);
 
@@ -10,6 +11,8 @@ const router = express.Router();
 // router.get('/customers/unblocked', customerController.getAllUnblockedCustomers);
 
 // router.get('/customers/phone/:phone', customerController.getCustomerByPhoneNumber);
+
+// router.get('/customers/name/:name', customerController.getCustomerByName);
 
 // router.post('/customers', customerController.createCustomer);
 

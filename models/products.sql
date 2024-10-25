@@ -1,8 +1,10 @@
 CREATE TABLE products (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT PRIMARY KEY,
     product_name VARCHAR(100) NOT NULL,
     description VARCHAR(200),
-    price INT NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
     type VARCHAR(100) NOT NULL,
-    status ENUM('Available', 'Out of Stock') NOT NULL DEFAULT 'Available'
+    calories INT,
+    image_path VARCHAR(255) NOT NULL,
+    status ENUM('متوفر', 'غير متوفر') NOT NULL DEFAULT 'متوفر'
 );
