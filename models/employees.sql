@@ -2,5 +2,5 @@ CREATE TABLE employees (
     id INT AUTO_INCREMENT PRIMARY KEY,
     full_name VARCHAR(50) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
-    type VARCHAR(50) NOT NULL,
+    type VARCHAR(50) NOT NULL
 );

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const customerController = require('./../controllers/customerController');
+const { validateCustomer, hashPassword } = require('../middlewares/customerMiddleware');
 
 router.get('/customers', customerController.getAllCustomers);
 
@@ -14,7 +15,7 @@ router.get('/customers', customerController.getAllCustomers);
 
 // router.get('/customers/name/:name', customerController.getCustomerByName);
 
-// router.post('/customers', customerController.createCustomer);
+router.post('/customers', validateCustomer, hashPassword, customerController.createCustomer);
 
 // router.put('/customers/:id', customerController.updateCustomerById);
 

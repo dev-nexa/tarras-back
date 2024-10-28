@@ -3,5 +3,5 @@ CREATE TABLE delivery_staff (
     full_name VARCHAR(100) NOT NULL,
     phone_number VARCHAR(15) NOT NULL,
     availability_state ENUM('متاح', 'غير متاح') DEFAULT 'غير متاح',
-    total_count INT NOT NULL DEFAULT 0,
+    total_count INT NOT NULL DEFAULT 0
 );

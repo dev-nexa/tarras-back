@@ -7,9 +7,10 @@ const customerController = {
             const customers = await customerRepository.getAllCustomers();
             return res.status(200).json(customers);
         } catch (error) {
-            return res
-                .status(500)
-                .json({ error: "Failed to retrieve customers", details: error.message });
+            return res.status(500).json({
+                error: "حدث خطأ في عملية جلب البيانات",
+                details: error.message
+            });
         }
     },
 
@@ -47,9 +48,30 @@ const customerController = {
 
     createCustomer: async (req, res) => {
         try {
+            const { full_name, phone_number, password_hash } = req.body;
 
+            const phoneExists = await customerRepository.checkPhoneNumberExists(phone_number);
+            if (phoneExists) {
+                return res.status(400).json({
+                    message: "رقم الهاتف موجود بالفعل",
+                });
+            }
+
+            const customerData = await customerRepository.createCustomer({
+                full_name,
+                phone_number,
+                password_hash,
+            });
+
+            return res.status(201).json({
+                message: "تم إنشاء مستخدم جديد",
+                customer: customerData,
+            });
         } catch (error) {
-
+            return res.status(500).json({
+                error: "Failed to create customer",
+                details: error.message,
+            });
         }
     },
 

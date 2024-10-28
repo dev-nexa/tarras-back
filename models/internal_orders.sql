@@ -4,7 +4,7 @@ CREATE TABLE internal_orders (
     total_price DECIMAL(10, 2) NOT NULL,
     order_state BOOLEAN NOT NULL DEFAULT 0,
     note VARCHAR(256) DEFAULT 'لا يوجد ملاحظات',
-    note INT ENUM(1, 2, 3, 4, 5),
+    rate INT DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (table_id) REFERENCES tables(id) ON DELETE CASCADE,
+    FOREIGN KEY (table_id) REFERENCES tables(id) ON DELETE CASCADE
 );
