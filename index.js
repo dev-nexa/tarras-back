@@ -20,7 +20,7 @@ const internalOrderRoutes = require('./routes/internalOrders');
 const tableRoutes = require('./routes/tables');
 const deliveryStaffRoutes = require('./routes/deliveryStaffs');
 const invoiceRoutes = require('./routes/invoices');
-const adminRoutes = require('./routes/admins');
+const employeesRoutes = require('./routes/employees');
 
 // Init
 const app = express();
@@ -77,7 +77,7 @@ app.use('/api', internalOrderRoutes);
 app.use('/api', tableRoutes);
 app.use('/api', deliveryStaffRoutes);
 app.use('/api', invoiceRoutes);
-app.use('/api', adminRoutes);
+app.use('/api', employeesRoutes);
 
 // URIs
 app.get("/", (req, res) => {

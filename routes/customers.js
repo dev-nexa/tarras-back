@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const customerController = require('./../controllers/customerController');
-const { validateCustomer, hashPassword, validateCustomerId, validateCustomerPhone, validateCustomerName } = require('../middlewares/customerMiddleware');
+const { validateCustomer, hashPassword, validateCustomerId, validateCustomerPhone, validateCustomerName, validateCustomerForUpdate } = require('../middlewares/customerMiddleware');
 
 router.post('/customers', validateCustomer, hashPassword, customerController.createCustomer);
 
@@ -17,7 +17,7 @@ router.get('/customers/phone/:phone', validateCustomerPhone, customerController.
 
 router.get('/customers/name/:name', validateCustomerName, customerController.getCustomerByName);
 
-router.put('/customers/:id', validateCustomer, hashPassword, customerController.updateCustomerById);
+router.put('/customers/:id', validateCustomerForUpdate, hashPassword, customerController.updateCustomerById);
 
 router.delete('/customers/:id', validateCustomerId, customerController.deleteCustomerById);
 

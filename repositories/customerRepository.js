@@ -120,9 +120,7 @@ const customerRepository = {
   updateCustomerById: async (id, customerData) => {
     try {
       const [result] = await db.query(
-        `UPDATE customers 
-             SET full_name = ?, phone_number = ?, password_hash = ?, is_blocked = ?
-             WHERE id = ?`,
+        `UPDATE customers SET full_name = ?, phone_number = ?, password_hash = ?, is_blocked = ? WHERE id = ?`,
         [customerData.full_name, customerData.phone_number, customerData.password_hash, customerData.is_blocked, id]
       );
       return result;
