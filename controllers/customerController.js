@@ -130,10 +130,13 @@ const customerController = {
 
             const result = await customerRepository.updateCustomerById(id, customerData);
 
-            if (result.affectedRows > 0) {
-                res.json({ message: "تم تحديث بيانات العميل بنجاح." });
+            if (result) {
+                res.json({
+                    message: 'تم تحديث بيانات العميل',
+                    customer: result,
+                });
             } else {
-                res.status(404).json({ message: "لم يتم العثور على عميل بهذا الرقم التعريفي." });
+                res.status(404).json({ message: 'لا يوجد عميل يحمل هذا المعرف' });
             }
         } catch (error) {
             res.status(500).json({ message: "خطأ في الخادم", error });

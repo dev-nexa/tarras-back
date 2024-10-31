@@ -119,11 +119,30 @@ const customerRepository = {
 
   updateCustomerById: async (id, customerData) => {
     try {
-      const [result] = await db.query(
-        `UPDATE customers SET full_name = ?, phone_number = ?, password_hash = ?, is_blocked = ? WHERE id = ?`,
-        [customerData.full_name, customerData.phone_number, customerData.password_hash, customerData.is_blocked, id]
+      let result = [];
+
+      if (customerData.password) {
+        result = await db.query(
+          `UPDATE customers SET full_name = ?, phone_number = ?, password_hash = ?, is_blocked = ? WHERE id = ?`,
+          [customerData.full_name, customerData.phone_number, customerData.password_hash, customerData.is_blocked, id]
+        );
+      } else {
+        result = await db.query(
+          `UPDATE customers SET full_name = ?, phone_number = ?, is_blocked = ? WHERE id = ?`,
+          [customerData.full_name, customerData.phone_number, customerData.is_blocked, id]
+        );
+      }
+
+      if (result.affectedRows === 0) {
+        return null;
+      }
+
+      const [updatedCustomer] = await db.query(
+        `SELECT id, full_name, phone_number, is_blocked FROM customers WHERE id = ?`,
+        [id]
       );
-      return result;
+
+      return updatedCustomer[0];
     } catch (error) {
       console.error("Database error:", error);
       throw error;

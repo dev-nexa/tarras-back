@@ -53,8 +53,6 @@ const validateEmoloyeeForUpdate = [
             body('password')
                 .isLength({ min: 6 }).withMessage('يجب أن تتكون كلمة المرور من 6 حروف أو أكثر')
                 .run(req);
-
-            req.body.password_hash = bcrypt.hashSync(req.body.password, 10);
         }
 
         const errors = validationResult(req);

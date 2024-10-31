@@ -13,8 +13,8 @@ const cookieSession = require("cookie-session");
 
 // Import routes
 const customerRoutes = require('./routes/customers');
+const categoriesRoutes = require('./routes/categories');
 const productRoutes = require('./routes/products');
-const productImageRoutes = require('./routes/productImages');
 const externalOrderRoutes = require('./routes/externalOrders');
 const internalOrderRoutes = require('./routes/internalOrders');
 const tableRoutes = require('./routes/tables');
@@ -71,7 +71,7 @@ app.use(morgan("combined"));
 // APIs
 app.use('/api', customerRoutes);
 app.use('/api', productRoutes);
-app.use('/api', productImageRoutes);
+app.use('/api', categoriesRoutes);
 app.use('/api', externalOrderRoutes);
 app.use('/api', internalOrderRoutes);
 app.use('/api', tableRoutes);

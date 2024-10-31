@@ -60,7 +60,9 @@ const validateCustomerName = [
 
 const hashPassword = async (req, res, next) => {
     try {
-        req.body.password_hash = await bcrypt.hash(req.body.password, 10);
+        if (req.body.password) {
+            req.body.password_hash = await bcrypt.hash(req.body.password, 10);
+        }
         next();
     } catch (error) {
         return res.status(500).json({
@@ -79,8 +81,6 @@ const validateCustomerForUpdate = [
             body('password')
                 .isLength({ min: 6 }).withMessage('يجب أن تتكون كلمة المرور من 6 حروف أو أكثر')
                 .run(req);
-
-            req.body.password_hash = bcrypt.hashSync(req.body.password, 10);
         }
 
         const errors = validationResult(req);

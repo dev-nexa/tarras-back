@@ -11,6 +11,6 @@ router.get('/employee/:id', validateEmoloyeeId, employeesController.getemployeeB
 
 router.put('/employee/:id', validateEmoloyeeForUpdate, hashPassword, employeesController.updateemployeeById);
 
-router.delete('/employee/:id', employeesController.deleteemployeeById);
+router.delete('/employee/:id', validateEmoloyeeId, employeesController.deleteemployeeById);
 
 module.exports = router;

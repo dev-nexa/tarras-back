@@ -63,12 +63,19 @@ const employeesRepository = {
 
     updateemployeeById: async (id, employeeData) => {
         try {
-            const { full_name, password_hash, phone_number, type, salary } = employeeData;
-
-            const [result] = await db.query(
-                `UPDATE employees SET full_name = ?, password_hash = ?, phone_number = ?, type = ?, salary = ? WHERE id = ?`,
-                [full_name, password_hash, phone_number, type, salary, id]
-            );
+            const { full_name, password_hash, phone_number, type, salary, password } = employeeData;
+            let result;
+            if(password) {
+                [result] = await db.query(
+                    `UPDATE employees SET full_name = ?, password_hash = ?, phone_number = ?, type = ?, salary = ? WHERE id = ?`,
+                    [full_name, password_hash, phone_number, type, salary, id]
+                );
+            } else {
+                [result] = await db.query(
+                    `UPDATE employees SET full_name = ?, phone_number = ?, type = ?, salary = ? WHERE id = ?`,
+                    [full_name, phone_number, type, salary, id]
+                );
+            }
 
             if (result.affectedRows === 0) {
                 return null;
