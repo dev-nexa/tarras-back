@@ -5,7 +5,7 @@ const productRepository = {
         try {
             const query = "INSERT INTO categories (name) VALUES (?)";
             const [result] = await db.query(query, [categoryData.name]);
-    
+
             return result.affectedRows > 0;
         } catch (error) {
             console.error("Database error:", error);
@@ -13,10 +13,15 @@ const productRepository = {
         }
     },
 
-    getAllCategories: async (state) => {
+    getAllCategories: async () => {
         try {
+            const query = "SELECT * FROM categories";
+            const [rows] = await db.execute(query);
 
+            return rows;
         } catch (error) {
+            console.error("Database error:", error);
+            throw error;
         }
     },
 
@@ -34,20 +39,29 @@ const productRepository = {
         }
     },
 
-
-    updateCategoryById: async (id, productData) => {
+    updateCategoryById: async (id, categoryData) => {
         try {
+            const query = "UPDATE categories SET name = ? WHERE id = ?";
+            await db.execute(query, [categoryData.name, id]);
 
+            const [result] = await db.execute("SELECT * FROM categories WHERE id = ?", [id]);
+
+            return result[0];
         } catch (error) {
-
+            console.error("Database error:", error);
+            throw error;
         }
     },
 
     deleteCategoryById: async (id) => {
         try {
+            const query = "DELETE FROM categories WHERE id = ?";
+            const [result] = await db.execute(query, [id]);
 
+            return result.affectedRows > 0;
         } catch (error) {
-
+            console.error("Database error:", error);
+            throw error;
         }
     },
 

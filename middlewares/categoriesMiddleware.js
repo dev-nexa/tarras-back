@@ -13,5 +13,21 @@ const validateId = [
     }
 ];
 
+const validateCategory = [
+    body('name')
+        .isString().withMessage('اسم الصنف يجب أن يكون نصًا.')
+        .isLength({ max: 100 }).withMessage('اسم الصنف لا يمكن أن يتجاوز 50 حرف.')
+        .notEmpty().withMessage('اسم الصنف مطلوب.')
+        .trim().escape(),
 
-module.exports = { validateId };
+    (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+        next();
+    }
+];
+
+
+module.exports = { validateId, validateCategory };
