@@ -99,9 +99,11 @@ const tableRepository = {
 
     getTableByQRCode: async (qrCode) => {
         try {
-
+            const query = 'SELECT * FROM tables WHERE qr_code = ?';
+            const [rows] = await db.query(query, [qrCode]);
+            return rows[0];
         } catch (error) {
-
+            throw error;
         }
     },
 

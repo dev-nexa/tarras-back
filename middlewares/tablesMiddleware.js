@@ -47,7 +47,7 @@ const validateTableState = [
 
 const validateTableId = [
     param('id')
-        .isInt({ gt: 0 }).withMessage('رقم الطاولة يجب أن يكون عدد صحيح موجب.')
+        .isInt({ gt: 0 }).withMessage('معرف الطاولة يجب أن يكون عدد صحيح موجب.')
         .notEmpty().withMessage('رقم الطاولة مطلوب.'),
 
     (req, res, next) => {
@@ -59,4 +59,21 @@ const validateTableId = [
     }
 ];
 
-module.exports = { validateTable, validateTableState, validateTableId };
+const validateTableQrCode = [
+    param('qrcode')
+        .optional()
+        .isString().withMessage('qr يجب أن يكون نصًا.')
+        // .isLength({ max: 200 }).withMessage('qr لا يمكن أن يتجاوز 200 حرف.')
+        .trim().escape()
+        .notEmpty().withMessage('qr مطلوب.'),
+
+    (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+        next();
+    }
+];
+
+module.exports = { validateTable, validateTableState, validateTableId, validateTableQrCode };

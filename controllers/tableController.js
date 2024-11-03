@@ -78,7 +78,7 @@ const tableController = {
             if (duplicateQrCode && (duplicateQrCode.id != tableId)) {
                 return res.status(400).json({ message: 'ال qr code موجود بالفعل على طاولة اخرى' });
             }
-            
+
             if (duplicateTableNumber && (duplicateTableNumber.id != tableId)) {
                 return res.status(400).json({ message: 'رقم الطاولة موجود بالفعل على طاولة اخرى' });
             }
@@ -98,12 +98,12 @@ const tableController = {
     deleteTableById: async (req, res) => {
         try {
             const tableId = req.params.id;
-    
+
             const existingTable = await tableRepository.getTableById(tableId);
             if (!existingTable) {
                 return res.status(404).json({ message: 'لا يوجد طاولة تحمل هذا المعرف' });
             }
-    
+
             const result = await tableRepository.deleteTableById(tableId);
             if (result) {
                 res.status(200).json({ message: 'تم حذف الطاولة بنجاح' });
@@ -118,9 +118,26 @@ const tableController = {
 
     getTableByQRCode: async (req, res) => {
         try {
+            const qrCode = req.params.qrcode;
 
+            const table = await tableRepository.getTableByQRCode(qrCode);
+
+            if (table) {
+                res.status(200).json({
+                    message: 'تم جلب معلومات الطاولة بنجاح',
+                    table
+                });
+            } else {
+                res.status(404).json({
+                    message: 'لا يوجد طاولة تحمل هذا ال qr code'
+                });
+            }
         } catch (error) {
-
+            console.error("Error retrieving table:", error);
+            res.status(500).json({
+                message: "Server error",
+                error
+            });
         }
     }
 };

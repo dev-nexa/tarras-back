@@ -685,7 +685,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"qr_code\": \"saassaa\",\r\n    \"details\": \"خارجية\",\r\n    \"number_of_people\": 2 ,\r\n    \"table_number\": 102\r\n}",
+							"raw": "{\r\n    \"qr_code\": \"saassaa\",\r\n    \"details\": \"\",\r\n    \"number_of_people\": 2 ,\r\n    \"table_number\": 102\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -801,6 +801,31 @@
 								{
 									"key": "id",
 									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get table by qr code",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/tableqrcode/:qrcode",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"tableqrcode",
+								":qrcode"
+							],
+							"variable": [
+								{
+									"key": "qrcode",
+									"value": "saassa"
 								}
 							]
 						}
