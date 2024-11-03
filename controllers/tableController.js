@@ -139,6 +139,37 @@ const tableController = {
                 error
             });
         }
+    },
+
+    updateTableState: async (req, res) => {
+        try {
+            const { state, id } = req.params;
+
+            const table = await tableRepository.getTableById(id);
+            if (!table) {
+                res.status(404).json({
+                    message: 'لا يوجد طاولة تحمل هذا المعرف'
+                });
+            } 
+
+            const result = await tableRepository.updateTableState(id, state);
+            if(result) {
+                res.json({
+                    message: 'تم تغيير حالة الطاولة'
+                });
+            } else {
+                res.status(400).json({
+                    message: 'حدث خطأ'
+                });
+            }
+
+        } catch (error) {
+            console.error("Error retrieving table:", error);
+            res.status(500).json({
+                message: "Server error",
+                error
+            });
+        }
     }
 };
 

@@ -33,7 +33,7 @@ const validateTable = [
 
 const validateTableState = [
     param('state')
-        .isIn([0, 1, 2]).withMessage('رقم الحالة يجب أن يكون إما 0، 1 أو 2.')
+        .isIn([0, 1]).withMessage('رقم الحالة يجب أن يكون إما 0، 1 .')
         .notEmpty().withMessage('رقم الحالة مطلوب.'),
 
     (req, res, next) => {
@@ -76,4 +76,10 @@ const validateTableQrCode = [
     }
 ];
 
-module.exports = { validateTable, validateTableState, validateTableId, validateTableQrCode };
+module.exports = { 
+    validateTable, 
+    validateTableState, 
+    validateTableId, 
+    validateTableQrCode, 
+    validateTableState 
+};

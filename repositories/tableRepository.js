@@ -87,6 +87,28 @@ const tableRepository = {
         }
     },
 
+    updateTableState: async (id, state) => {
+        try {
+            const query = `
+                UPDATE tables 
+                SET open_close = ?
+                WHERE id = ?
+            `;
+            const values = [ state, id ];
+    
+            const [result] = await db.query(query, values);
+    
+            if (result.affectedRows === 0) {
+                return null; 
+            }
+    
+            return true;
+        } catch (error) {
+            console.error("Database error:", error);
+            throw error;
+        }
+    },
+
     deleteTableById: async (id) => {
         try {
             const query = 'DELETE FROM tables WHERE id = ?';
