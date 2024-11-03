@@ -833,6 +833,248 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Delivery staff",
+			"item": [
+				{
+					"name": "Create delivery staff",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"full_name\": \"ali zaitoni\",\r\n    \"phone_number\": \"0985754800\",\r\n    \"password\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/delivery-staff",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"delivery-staff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all delivery staff",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/delivery-staff",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"delivery-staff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get delivery staff by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/delivery-staff/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"delivery-staff",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get available delivery staff",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/deliverystaff/available",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"deliverystaff",
+								"available"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete delivery staff by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/delivery-staff/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"delivery-staff",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "-1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit delivery staff",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"full_name\": \"alssssss\",\r\n    \"phone_number\": \"0985754800\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/delivery-staff/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"delivery-staff",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit delivery staff status",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/delivery-staff-status/:id/:status",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"delivery-staff-status",
+								":id",
+								":status"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								},
+								{
+									"key": "status",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit delivery staff password",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"55555555\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/delivery-staff-password/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"delivery-staff-password",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get table by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/table/:id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"table",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
