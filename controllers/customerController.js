@@ -128,6 +128,12 @@ const customerController = {
                 });
             }
 
+            const customer = await customerRepository.getCustomerById(id);
+            if(customer === -1) {
+                return res.status(404).json({
+                    message: "لا يوجد مستخدم يحل هذا المعرف",
+                });
+            }
             const result = await customerRepository.updateCustomerById(id, customerData);
 
             if (result) {
@@ -139,6 +145,24 @@ const customerController = {
                 res.status(404).json({ message: 'لا يوجد عميل يحمل هذا المعرف' });
             }
         } catch (error) {
+            res.status(500).json({ message: "خطأ في الخادم", error });
+        }
+    },
+
+    updateCustomerPasswordById: async(req, res) => {
+        const customerId = req.params.id;
+        const hashedPassword = req.body.password_hash;
+
+        try {
+            const result = await customerRepository.updateCustomerPasswordById(customerId, hashedPassword);
+
+            if (result.affectedRows === 0) {
+                return res.status(404).json({ message: 'مستخدم غير موجود' });
+            }
+
+            res.status(200).json({ message: 'تم تحديث كلمة المرور بنجاح' });
+        } catch (error) {
+            console.error("Error updating staff password:", error);
             res.status(500).json({ message: "خطأ في الخادم", error });
         }
     },

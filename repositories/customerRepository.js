@@ -119,19 +119,10 @@ const customerRepository = {
 
   updateCustomerById: async (id, customerData) => {
     try {
-      let result = [];
-
-      if (customerData.password) {
-        result = await db.query(
-          `UPDATE customers SET full_name = ?, phone_number = ?, password_hash = ?, is_blocked = ? WHERE id = ?`,
-          [customerData.full_name, customerData.phone_number, customerData.password_hash, customerData.is_blocked, id]
-        );
-      } else {
-        result = await db.query(
-          `UPDATE customers SET full_name = ?, phone_number = ?, is_blocked = ? WHERE id = ?`,
-          [customerData.full_name, customerData.phone_number, customerData.is_blocked, id]
-        );
-      }
+      [result] = await db.query(
+        `UPDATE customers SET full_name = ?, phone_number = ?, is_blocked = ? WHERE id = ?`,
+        [customerData.full_name, customerData.phone_number, customerData.is_blocked, id]
+      );
 
       if (result.affectedRows === 0) {
         return null;
@@ -143,6 +134,17 @@ const customerRepository = {
       );
 
       return updatedCustomer[0];
+    } catch (error) {
+      console.error("Database error:", error);
+      throw error;
+    }
+  },
+
+  updateCustomerPasswordById: async (id, hashedPassword) => {
+    try {
+      const query = 'UPDATE customers SET password_hash = ? WHERE id = ?';
+      const [result] = await db.execute(query, [hashedPassword, id]);
+      return result;
     } catch (error) {
       console.error("Database error:", error);
       throw error;

@@ -16,7 +16,7 @@ const productRepository = {
         return -1;
       }
 
-      return rows; // Only return the rows array
+      return rows;
     } catch (error) {
       console.error("Database error:", error);
       throw error;
@@ -25,9 +25,12 @@ const productRepository = {
 
   getProductById: async (id) => {
     try {
+      const [rows] = await db.query("SELECT * FROM products WHERE id = ?", [id]);
 
+      return rows.length > 0 ? rows[0] : null;
     } catch (error) {
-
+      console.error("Database error:", error);
+      throw error;
     }
   },
 
@@ -64,27 +67,44 @@ const productRepository = {
 
   updateProductById: async (id, productData) => {
     try {
+      const query = `
+            UPDATE products 
+            SET product_name = ?, description = ?, price = ?, category_id = ?, 
+                calories = ?, image_path = ?, status = ? 
+            WHERE id = ?`;
 
+      const { product_name, description, price, category_id, calories, image_path, status } = productData;
+      await db.query(query, [product_name, description, price, category_id, calories, image_path, status, id]);
+
+      return { id, ...productData };
     } catch (error) {
-
+      console.error("Database error:", error);
+      throw error;
     }
   },
 
   deleteProductById: async (id) => {
     try {
-
+      const [result] = await db.query("DELETE FROM products WHERE id = ?", [id]);
+      return result;
     } catch (error) {
-
+      console.error("Database error:", error);
+      throw error;
     }
   },
 
   getProductsByCategory: async (category) => {
     try {
+      const query = 'SELECT * FROM products WHERE category_id = ?';
+      const [rows] = await db.query(query, [category]);
 
+      return rows;
     } catch (error) {
-
+      console.error("Database error:", error);
+      throw error;
     }
   }
+
 };
 
 module.exports = productRepository;

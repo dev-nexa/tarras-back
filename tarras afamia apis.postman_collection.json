@@ -17,7 +17,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"full_name\": \"ali zaitoni\",\r\n    \"phone_number\": \"0985754878\",\r\n    \"password\": \"123456789\"\r\n}",
+							"raw": "{\r\n    \"full_name\": \"ali gggg\",\r\n    \"phone_number\": \"09857447878\",\r\n    \"password\": \"123456789\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -124,14 +124,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/customers/phone/:phone",
+							"raw": "{{base_url}}/api/customers-phone/:phone",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
-								"customers",
-								"phone",
+								"customers-phone",
 								":phone"
 							],
 							"variable": [
@@ -150,14 +149,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/customers/name/:name",
+							"raw": "{{base_url}}/api/customers-name/:name",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
-								"customers",
-								"name",
+								"customers-name",
 								":name"
 							],
 							"variable": [
@@ -177,7 +175,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"full_name\": \"ali madani\",\r\n    \"phone_number\": \"0985704874\"\r\n}",
+							"raw": "{\r\n    \"full_name\": \"ali 6666\",\r\n    \"phone_number\": \"09855555578\",\r\n    \"is_blocked\": 0\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -197,7 +195,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "2"
+									"value": "8"
 								}
 							]
 						}
@@ -223,6 +221,40 @@
 								{
 									"key": "id",
 									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update customer  password by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"1234567888889789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/customer-password/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"customer-password",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "8"
 								}
 							]
 						}
@@ -385,7 +417,7 @@
 							"formdata": [
 								{
 									"key": "id",
-									"value": "4",
+									"value": "14",
 									"type": "text"
 								},
 								{
@@ -439,6 +471,71 @@
 					"response": []
 				},
 				{
+					"name": "Update product by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "product_name",
+									"value": "شىشسسسسسسس",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "efdvdv",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "343",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "calories",
+									"value": "345",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "photoPath",
+									"type": "file",
+									"src": "/C:/Users/al_za/OneDrive/Pictures/صورة1.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/product/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"product",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "14"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get product by state",
 					"request": {
 						"method": "GET",
@@ -456,7 +553,7 @@
 							"variable": [
 								{
 									"key": "state",
-									"value": ""
+									"value": "2"
 								}
 							]
 						}
@@ -1050,31 +1147,6 @@
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "Get table by id",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}/api/table/:id",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"api",
-						"table",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "1"
-						}
-					]
-				}
-			},
-			"response": []
 		}
 	]
 }

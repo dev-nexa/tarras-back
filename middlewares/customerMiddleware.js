@@ -75,14 +75,9 @@ const hashPassword = async (req, res, next) => {
 const validateCustomerForUpdate = [
     body('full_name').isLength({ min: 3 }).withMessage('الاسم الكامل يجب أن يكون على الأقل 3 حروف'),
     body('phone_number').isMobilePhone('any').withMessage('رقم الهاتف غير صالح'),
-
+    body('is_blocked').isIn([0, 1]).withMessage('الحالة يجب ان تكون اما صفر او واحد'),
+    
     (req, res, next) => {
-        if (req.body.password) {
-            body('password')
-                .isLength({ min: 6 }).withMessage('يجب أن تتكون كلمة المرور من 6 حروف أو أكثر')
-                .run(req);
-        }
-
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
@@ -91,4 +86,24 @@ const validateCustomerForUpdate = [
     }
 ];
 
-module.exports = { validateCustomer, hashPassword, validateCustomerId, validateCustomerPhone, validateCustomerName, validateCustomerForUpdate };
+const validateCustomerUpdatePassword = [
+    body('password').isLength({ min: 8 }).withMessage('كلمة المرور يجب أن تكون على الأقل 8 حروف'),
+
+    (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+        next();
+    }
+];
+
+module.exports = { 
+    validateCustomer, 
+    hashPassword, 
+    validateCustomerId, 
+    validateCustomerPhone, 
+    validateCustomerName, 
+    validateCustomerForUpdate, 
+    validateCustomerUpdatePassword 
+};
