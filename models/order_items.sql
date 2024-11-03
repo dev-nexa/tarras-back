@@ -4,6 +4,7 @@ CREATE TABLE order_items (
     internal_order_id INT,
     product_id INT NOT NULL,
     order_type ENUM('خارجي', 'داخلي'),
+    quantity INT NOT NULL DEFAULT 1,
     total_amount DECIMAL(10, 2) NOT NULL,
     issued_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     note VARCHAR(256) DEFAULT 'لا يوجد ملاحظات',
