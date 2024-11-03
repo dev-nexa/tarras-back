@@ -4,7 +4,7 @@
 		"name": "tarras afamia apis",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "37610448",
-		"_collection_link": "https://watan9.postman.co/workspace/watan~db61b59d-1758-48a4-8f1e-e0daa42ce17a/collection/37610448-75332c47-3b3c-45d1-bedc-955d745475ec?action=share&source=collection_link&creator=37610448"
+		"_collection_link": "https://watan9.postman.co/workspace/Nexa~db61b59d-1758-48a4-8f1e-e0daa42ce17a/collection/37610448-75332c47-3b3c-45d1-bedc-955d745475ec?action=share&source=collection_link&creator=37610448"
 	},
 	"item": [
 		{
@@ -385,12 +385,12 @@
 							"formdata": [
 								{
 									"key": "id",
-									"value": "13",
+									"value": "4",
 									"type": "text"
 								},
 								{
 									"key": "product_name",
-									"value": "dfdfdfsfcd",
+									"value": "شمه",
 									"type": "text"
 								},
 								{
@@ -437,6 +437,107 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get product by state",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products/:state",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								":state"
+							],
+							"variable": [
+								{
+									"key": "state",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Grt product by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/product/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"product",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "11"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete product by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/deleteproduct/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"deleteproduct",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get products by category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products/category/:category",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"category",
+								":category"
+							],
+							"variable": [
+								{
+									"key": "category",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -450,7 +551,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"غربي\"\r\n}",
+							"raw": "{\r\n    \"name\": \"شرقي\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -483,6 +584,217 @@
 							"path": [
 								"api",
 								"category",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/categories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Category by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"شرقي\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/category/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"category",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete category by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/category/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"category",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tebles",
+			"item": [
+				{
+					"name": "Create new table",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"qr_code\": \"saassaa\",\r\n    \"details\": \"خارجية\",\r\n    \"number_of_people\": 2 ,\r\n    \"table_number\": 102\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/tables",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"tables"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all tables",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/tables",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"tables"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit table by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"qr_code\": \"sad\",\r\n    \"details\": \"خارجية\",\r\n    \"number_of_people\": 2 ,\r\n    \"table_number\": 102\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/table/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"table",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete table by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/table/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"table",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get table by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/table/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"table",
 								":id"
 							],
 							"variable": [

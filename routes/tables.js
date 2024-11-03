@@ -1,15 +1,18 @@
 const express = require('express');
 const router = express.Router();
 
-// router.get('/tables', tableController.getAllTables);
+const tableController = require('../controllers/tableController');
+const { validateTable, validateTableId } = require('../middlewares/tablesMiddleware');
 
-// router.get('/tables/:id', tableController.getTableById);
+router.get('/tables', tableController.getAllTables);
 
-// router.post('/tables', tableController.createTable);
+router.get('/table/:id', validateTableId, tableController.getTableById);
 
-// router.put('/tables/:id', tableController.updateTableById);
+router.post('/tables', validateTable, tableController.createTable);
 
-// router.delete('/tables/:id', tableController.deleteTableById);
+router.put('/table/:id', validateTable, tableController.updateTableById);
+
+router.delete('/table/:id', validateTableId, tableController.deleteTableById);
 
 // router.get('/tables/qrcode/:qrCode', tableController.getTableByQRCode);
 
