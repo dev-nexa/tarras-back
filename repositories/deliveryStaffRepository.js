@@ -4,7 +4,7 @@ const deliveryStaffRepository = {
 
     getAllStaff: async () => {
         try {
-            const query = 'SELECT full_name, phone_number, availability_state, total_count FROM delivery_staff';
+            const query = 'SELECT id, full_name, phone_number, availability_state, total_count FROM delivery_staff';
             const [rows] = await db.execute(query);
             return rows;
         } catch (error) {

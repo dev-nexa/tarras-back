@@ -63,7 +63,7 @@ const validateTableQrCode = [
     param('qrcode')
         .optional()
         .isString().withMessage('qr يجب أن يكون نصًا.')
-        // .isLength({ max: 200 }).withMessage('qr لا يمكن أن يتجاوز 200 حرف.')
+        .isLength({ max: 200 }).withMessage('qr لا يمكن أن يتجاوز 200 حرف.')
         .trim().escape()
         .notEmpty().withMessage('qr مطلوب.'),
 

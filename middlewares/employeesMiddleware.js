@@ -49,12 +49,6 @@ const validateEmoloyeeForUpdate = [
     body('phone_number').isMobilePhone('any').withMessage('رقم الهاتف غير صالح'),
 
     (req, res, next) => {
-        if (req.body.password) {
-            body('password')
-                .isLength({ min: 6 }).withMessage('يجب أن تتكون كلمة المرور من 6 حروف أو أكثر')
-                .run(req);
-        }
-
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
@@ -63,5 +57,22 @@ const validateEmoloyeeForUpdate = [
     }
 ];
 
+const validateEmoloyeePasswordForUpdate = [
+    body('password').isLength({ min: 8 }).withMessage('كلمة المرور يجب أن تكون على الأقل 8 حروف'),
 
-module.exports = { validateEmployee, hashPassword, validateEmoloyeeId, validateEmoloyeeForUpdate };
+    (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+        next();
+    }
+];
+
+module.exports = { 
+    validateEmployee, 
+    hashPassword, 
+    validateEmoloyeeId, 
+    validateEmoloyeeForUpdate,
+    validateEmoloyeePasswordForUpdate 
+};

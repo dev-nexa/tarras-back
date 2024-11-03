@@ -66,6 +66,13 @@ const employeesController = {
                 });
             }
 
+            const employee = await employeesRepository.getemployeeById(id);
+            if(!employee) {
+                return res.status(404).json({
+                    message: "لا يوجد مستخدم يحمل هذا المعرف",
+                });
+            }
+
             const updatedEmployee = await employeesRepository.updateemployeeById(id, employeeData);
 
             if (updatedEmployee) {
@@ -79,6 +86,30 @@ const employeesController = {
         } catch (error) {
             console.error("Error updating employee:", error);
             res.status(500).json({ message: "Server error", error });
+        }
+    },
+
+    updateemployeePasswordById: async (req, res) => {
+        const employeeId = req.params.id;
+        const hashedPassword = req.body.password_hash;
+
+        try {
+            const employee = await employeesRepository.getemployeeById(employeeId);
+            if(!employee) {
+                return res.status(404).json({
+                    message: "لا يوجد مستخدم يحمل هذا المعرف",
+                });
+            }
+
+            const result = await employeesRepository.updateemployeePasswordById(employeeId, hashedPassword);
+            if (result.affectedRows === 0) {
+                return res.status(404).json({ message: 'موظف غير موجود' });
+            }
+
+            res.status(200).json({ message: 'تم تحديث كلمة المرور بنجاح' });
+        } catch (error) {
+            console.error("Error updating employee password:", error);
+            res.status(500).json({ message: "خطأ في الخادم", error });
         }
     },
 

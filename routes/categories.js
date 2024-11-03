@@ -4,7 +4,7 @@ const router = express.Router();
 const categoriesController = require('../controllers/categoriesController');
 const { validateId, validateCategory } = require('../middlewares/categoriesMiddleware');
 
-router.post('/category', categoriesController.createCategory);
+router.post('/category', validateCategory, categoriesController.createCategory);
 
 router.get('/categories', categoriesController.getAllCategories);
 

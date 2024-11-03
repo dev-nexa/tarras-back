@@ -63,12 +63,12 @@ const employeesRepository = {
 
     updateemployeeById: async (id, employeeData) => {
         try {
-            const { full_name, password_hash, phone_number, type, salary, password } = employeeData;
+            const { full_name, phone_number, type, salary, password } = employeeData;
             let result;
-            if(password) {
+            if (password) {
                 [result] = await db.query(
-                    `UPDATE employees SET full_name = ?, password_hash = ?, phone_number = ?, type = ?, salary = ? WHERE id = ?`,
-                    [full_name, password_hash, phone_number, type, salary, id]
+                    `UPDATE employees SET full_name = ?, phone_number = ?, type = ?, salary = ? WHERE id = ?`,
+                    [full_name, phone_number, type, salary, id]
                 );
             } else {
                 [result] = await db.query(
@@ -93,12 +93,23 @@ const employeesRepository = {
         }
     },
 
+    updateemployeePasswordById: async (id, hashedPassword) => {
+        try {
+            const query = 'UPDATE employees SET password_hash = ? WHERE id = ?';
+            const [result] = await db.execute(query, [hashedPassword, id]);
+            return result;
+        } catch (error) {
+            console.error("Database error:", error);
+            throw error;
+        }
+    },
+
     deleteemployeeById: async (id) => {
         try {
             const [result] = await db.query(`DELETE FROM employees WHERE id = ?`, [id]);
 
             if (result.affectedRows === 0) {
-                return null; 
+                return null;
             }
 
             return { message: "تم حذف حساب الموظف بنجاح" };
