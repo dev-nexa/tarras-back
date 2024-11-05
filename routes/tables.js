@@ -15,14 +15,16 @@ const {
  
  router.get('/table/:id', validateTableId, tableController.getTableById);
 
-router.put('/table/:id', validateTable, tableController.updateTableById);
+ router.get('/tableqrcode/:qrcode', validateTableQrCode, tableController.getTableByQRCode);
 
-router.put('/reset-tables', tableController.resetTables);
-
-router.put('/change-table-state/:id/:state', validateTableId, validateTableState, tableController.updateTableState);
-
-router.delete('/table/:id', validateTableId, tableController.deleteTableById);
-
-router.get('/tableqrcode/:qrcode', validateTableQrCode, tableController.getTableByQRCode);
+ router.get('/table-locations', tableController.getTablelocation);
+ 
+ router.put('/table/:id', validateTable, tableController.updateTableById);
+ 
+ router.put('/reset-tables', tableController.resetTables);
+ 
+ router.put('/change-table-state/:id/:state', validateTableId, validateTableState, tableController.updateTableState);
+ 
+ router.delete('/table/:id', validateTableId, tableController.deleteTableById);
 
 module.exports = router;

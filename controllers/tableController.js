@@ -190,7 +190,17 @@ const tableController = {
                 error
             });
         }
-    }
+    },
+
+    getTablelocation: async (req, res) => {
+        try {
+            const locations = await tableRepository.getAllUniqueLocations();
+            res.status(200).json({ locations });
+        } catch (error) {
+            console.error('Error getting table locations:', error);
+            res.status(500).json({ message: 'خطأ في الخادم أثناء استرجاع المواقع.' });
+        }
+    },
 };
 
 module.exports = tableController;

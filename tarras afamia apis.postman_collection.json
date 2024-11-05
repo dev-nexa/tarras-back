@@ -1028,6 +1028,24 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get all locations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/table-locations",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"table-locations"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

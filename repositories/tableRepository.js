@@ -201,7 +201,18 @@ const tableRepository = {
         const query = `UPDATE tables SET is_taken = 1 WHERE id IN (${placeholders})`;
     
         await db.execute(query, tableIds);
-    }
+    },
+
+    getAllUniqueLocations: async () => {
+        try {
+            const query = 'SELECT DISTINCT location FROM tables';
+            const [rows] = await db.execute(query);
+            return rows.map(row => row.location);
+        } catch (error) {
+            console.error('Error fetching unique locations:', error);
+            throw error;
+        }
+    },
 };
 
 module.exports = tableRepository;
