@@ -21,6 +21,7 @@ const tableRoutes = require('./routes/tables');
 const deliveryStaffRoutes = require('./routes/deliveryStaffs');
 const invoiceRoutes = require('./routes/invoices');
 const employeesRoutes = require('./routes/employees');
+const locationsRoutes = require('./routes/locations');
 
 // Init
 const app = express();
@@ -78,6 +79,7 @@ app.use('/api', tableRoutes);
 app.use('/api', deliveryStaffRoutes);
 app.use('/api', invoiceRoutes);
 app.use('/api', employeesRoutes);
+app.use('/api', locationsRoutes);
 
 // URIs
 app.get("/", (req, res) => {
