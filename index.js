@@ -67,7 +67,7 @@ const apiLimiter = rateLimit({
 app.use("/api/", apiLimiter);
 
 // Protection
-app.use(helmet()); //USE to secure inspect //TODO LATER
+app.use(helmet()); //USE to secure inspect
 app.use(morgan("combined"));
 
 // APIs

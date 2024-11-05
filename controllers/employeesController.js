@@ -30,6 +30,22 @@ const employeesController = {
         }
     },
 
+    getemployeeByType: async (req, res) => {
+        try {
+            const { type } = req.params;
+            const employees = await employeesRepository.getemployeeByType(type);
+
+            if (employees) {
+                res.json(employees);
+            } else {
+                res.status(404).json({ message: "لا يوجد موظفين بهذا النوع" });
+            }
+        } catch (error) {
+            console.error("Server error:", error);
+            res.status(500).json({ message: "خطأ في الخادم", error });
+        }
+    },
+
     createemployee: async (req, res) => {
         try {
             const employeeData = req.body;
@@ -51,8 +67,6 @@ const employeesController = {
             res.status(500).json({ message: "Server error", error });
         }
     },
-
-    
 
     updateemployeeById: async (req, res) => {
         try {

@@ -28,6 +28,20 @@ const employeesRepository = {
         }
     },
 
+    getemployeeByType: async (type) => {
+        try {
+            const [rows] = await db.query(
+                `SELECT id, full_name, type, phone_number, created_at, salary FROM employees WHERE type = ?`,
+                [type]
+            );
+
+            return rows;
+        } catch (error) {
+            console.error("Database error:", error);
+            throw error;
+        }
+    },
+
     checkPhoneNumberExists: async (phone_number) => {
         const query = `SELECT id FROM employees WHERE phone_number = ?`;
         const [result] = await db.execute(query, [phone_number]);

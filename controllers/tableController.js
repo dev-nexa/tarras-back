@@ -95,6 +95,25 @@ const tableController = {
         }
     },
 
+    resetTables: async (req, res) => {
+        try {
+            const resetTables = await tableRepository.resetTables();
+            // TODO delete daily_table-employees
+            
+            if(resetTables == -1) {
+                return res.status(400).json({
+                    message: 'حدث خطأ بإعادة ترتيب الطاولات'
+                });
+            }
+            res.status(200).json({
+                message: 'تم إعادة ترتيبب الطاولات بنجاح'
+            });
+        } catch (error) {
+            console.error("Error updating table:", error);
+            res.status(500).json({ message: "Server error", error });
+        }
+    },
+
     deleteTableById: async (req, res) => {
         try {
             const tableId = req.params.id;

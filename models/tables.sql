@@ -5,4 +5,5 @@ CREATE TABLE tables (
     number_of_people INT NOT NULL DEFAULT 2,
     table_number INT NOT NULL UNIQUE,
     open_close BOOLEAN NOT NULL DEFAULT 0,
+    is_taken BOOLEAN NOT NULL DEFAULT 0,
 );

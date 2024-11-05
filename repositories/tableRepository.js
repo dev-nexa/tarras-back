@@ -109,6 +109,17 @@ const tableRepository = {
         }
     },
 
+    resetTables: async () => {
+        try {
+            const query = 'UPDATE tables SET is_taken = 0';
+            const [result] = await db.execute(query);
+            return result.affectedRows ? result : -1;
+        } catch (error) {
+            console.error("Database error:", error);
+            throw error;
+        }
+    },
+
     deleteTableById: async (id) => {
         try {
             const query = 'DELETE FROM tables WHERE id = ?';

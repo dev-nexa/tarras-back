@@ -69,10 +69,23 @@ const validateEmoloyeePasswordForUpdate = [
     }
 ];
 
+const validateEmoloyeeType = [
+    param('type').isLength({ min: 2, max: 50 }).withMessage('نوع الموظف يجب ان يكون بين الحرفين والخمسون حرف'),
+
+    (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+        next();
+    }
+];
+
 module.exports = { 
-    validateEmployee, 
     hashPassword, 
+    validateEmployee, 
     validateEmoloyeeId, 
+    validateEmoloyeeType,
     validateEmoloyeeForUpdate,
     validateEmoloyeePasswordForUpdate 
 };

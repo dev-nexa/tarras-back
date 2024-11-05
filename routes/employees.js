@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const employeesController = require('./../controllers/employeesController');
 const { 
-    validateEmployee, 
     hashPassword, 
+    validateEmployee, 
     validateEmoloyeeId, 
+    validateEmoloyeeType,
     validateEmoloyeeForUpdate,
     validateEmoloyeePasswordForUpdate
 } = require('./../middlewares/employeesMiddleware');
@@ -14,6 +15,8 @@ router.post('/employee', validateEmployee, hashPassword, employeesController.cre
 router.get('/employees', employeesController.getAllemployees);
 
 router.get('/employee/:id', validateEmoloyeeId, employeesController.getemployeeById);
+
+router.get('/employees/:type', validateEmoloyeeType, employeesController.getemployeeByType);
 
 router.put('/employee/:id', validateEmoloyeeForUpdate, employeesController.updateemployeeById);
 

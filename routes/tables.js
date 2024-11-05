@@ -9,13 +9,15 @@ const {
     validateTableState
  } = require('../middlewares/tablesMiddleware');
 
-router.get('/tables', tableController.getAllTables);
-
-router.get('/table/:id', validateTableId, tableController.getTableById);
-
-router.post('/tables', validateTable, tableController.createTable);
+ router.post('/tables', validateTable, tableController.createTable);
+ 
+ router.get('/tables', tableController.getAllTables);
+ 
+ router.get('/table/:id', validateTableId, tableController.getTableById);
 
 router.put('/table/:id', validateTable, tableController.updateTableById);
+
+router.put('/reset-tables', tableController.resetTables);
 
 router.put('/change-table-state/:id/:state', validateTableId, validateTableState, tableController.updateTableState);
 
