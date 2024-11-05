@@ -4,7 +4,7 @@
 		"name": "tarras afamia apis",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "37610448",
-		"_collection_link": "https://watan9.postman.co/workspace/Nexa~db61b59d-1758-48a4-8f1e-e0daa42ce17a/collection/37610448-75332c47-3b3c-45d1-bedc-955d745475ec?action=share&source=collection_link&creator=37610448"
+		"_collection_link": "https://web.postman.co/workspace/Nexa~db61b59d-1758-48a4-8f1e-e0daa42ce17a/collection/37610448-75332c47-3b3c-45d1-bedc-955d745475ec?action=share&source=collection_link&creator=37610448"
 	},
 	"item": [
 		{
@@ -273,7 +273,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"full_name\": \"anas kilaniii\",\r\n    \"password\": \"123456789\",\r\n    \"type\": \"كبتن الكباتن\",\r\n    \"phone_number\": \"123454321\",\r\n    \"salary\": 600000\r\n}",
+							"raw": "{\r\n    \"full_name\": \"anas kilaniii\",\r\n    \"password\": \"123458889\",\r\n    \"type_id\": 1,\r\n    \"phone_number\": \"123754321\",\r\n    \"salary\": 600000\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -299,20 +299,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/employee/:id",
+							"raw": "{{base_url}}/api/employees",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
-								"employee",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "16"
-								}
+								"employees"
 							]
 						}
 					},
@@ -430,6 +423,31 @@
 								{
 									"key": "id",
 									"value": "16"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all employees by type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/employees/:type",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"employees",
+								":type"
+							],
+							"variable": [
+								{
+									"key": "type",
+									"value": "كبتن الكباتن"
 								}
 							]
 						}
@@ -816,7 +834,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"qr_code\": \"fffffffff\",\r\n    \"details\": \"\",\r\n    \"number_of_people\": 2 ,\r\n    \"table_number\": 103\r\n}",
+							"raw": "{\r\n    \"qr_code\": \"ffffff\",\r\n    \"details\": \"\",\r\n    \"number_of_people\": 2 ,\r\n    \"table_number\": 105,\r\n    \"location\": \"داخلي\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -861,7 +879,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"qr_code\": \"saddddddddddddd\",\r\n    \"details\": \"خارجية\",\r\n    \"number_of_people\": 2 ,\r\n    \"table_number\": 103\r\n}",
+							"raw": "{\r\n    \"qr_code\": \"saddddddddddddd\",\r\n    \"details\": \"خارجية\",\r\n    \"number_of_people\": 2 ,\r\n    \"table_number\": 103و\r\n    \"location\": \"خارجي\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -881,7 +899,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "6"
+									"value": "9"
 								}
 							]
 						}
@@ -988,6 +1006,24 @@
 									"key": "state",
 									"value": "1"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset tables",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/reset-tables",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"reset-tables"
 							]
 						}
 					},
@@ -1438,6 +1474,172 @@
 								{
 									"key": "id",
 									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Daily table employees",
+			"item": [
+				{
+					"name": "Add daily table employees",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"employee_id\": 3,\r\n    \"table_ids\": [1, 5, 7]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/assign-tables",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"assign-tables"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Employees Type",
+			"item": [
+				{
+					"name": "Create employees type",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"cabtin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/employees-type",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"employees-type"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all employees type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/employees-types",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"employees-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get employees type by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/employees-type/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"employees-type",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit employees type by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"صبي\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/employees-type/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"employees-type",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete employees type by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/employees-type/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"employees-type",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
 								}
 							]
 						}

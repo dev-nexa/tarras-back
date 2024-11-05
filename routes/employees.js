@@ -16,7 +16,7 @@ router.get('/employees', employeesController.getAllemployees);
 
 router.get('/employee/:id', validateEmoloyeeId, employeesController.getemployeeById);
 
-router.get('/employees/:type', validateEmoloyeeType, employeesController.getemployeeByType);
+router.get('/employees/:type_id', validateEmoloyeeType, employeesController.getemployeeByType);
 
 router.put('/employee/:id', validateEmoloyeeForUpdate, employeesController.updateemployeeById);
 

@@ -32,8 +32,8 @@ const employeesController = {
 
     getemployeeByType: async (req, res) => {
         try {
-            const { type } = req.params;
-            const employees = await employeesRepository.getemployeeByType(type);
+            const { type_id } = req.params;
+            const employees = await employeesRepository.getemployeeByType(type_id);
 
             if (employees) {
                 res.json(employees);

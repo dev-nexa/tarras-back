@@ -5,7 +5,7 @@ const validateTable = [
     body('qr_code')
         .optional()
         .isString().withMessage('qr يجب أن يكون نصًا.')
-        // .isLength({ max: 200 }).withMessage('qr لا يمكن أن يتجاوز 200 حرف.')
+        .isLength({ max: 200 }).withMessage('qr لا يمكن أن يتجاوز 200 حرف.')
         .trim().escape()
         .notEmpty().withMessage('qr مطلوب.'),
 
@@ -21,6 +21,10 @@ const validateTable = [
         .isNumeric().withMessage('رقم الطاولة يجب أن يكون رقمًا.')
         .isInt({ min: 1 }).withMessage('رقم الطاولة يجب أن يكون أكبر من أو يساوي 1.')
         .notEmpty().withMessage('رقم الطاولة مطلوب.'),
+        
+    body('location')
+        .isString().withMessage('القسم يجب ان يكون نصا')
+        .isLength({ max: 50 }).withMessage(' لا يمكن أن يتجاوز 50 حرف.'),
 
     (req, res, next) => {
         const errors = validationResult(req);

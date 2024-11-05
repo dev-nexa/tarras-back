@@ -5,7 +5,7 @@ const employeesRepository = {
     getAllemployees: async () => {
         try {
             const [rows] = await db.query(
-                `SELECT id, full_name, type, phone_number, salary, created_at FROM employees`
+                `SELECT id, full_name, type_id, phone_number, salary, created_at FROM employees`
             );
             return rows;
         } catch (error) {
@@ -17,7 +17,7 @@ const employeesRepository = {
     getemployeeById: async (id) => {
         try {
             const [rows] = await db.query(
-                `SELECT id, full_name, type, phone_number, created_at, salary FROM employees WHERE id = ?`,
+                `SELECT id, full_name, type_id, phone_number, created_at, salary FROM employees WHERE id = ?`,
                 [id]
             );
 
@@ -28,11 +28,11 @@ const employeesRepository = {
         }
     },
 
-    getemployeeByType: async (type) => {
+    getemployeeByType: async (type_id) => {
         try {
             const [rows] = await db.query(
-                `SELECT id, full_name, type, phone_number, created_at, salary FROM employees WHERE type = ?`,
-                [type]
+                `SELECT id, full_name, type_id, phone_number, created_at, salary FROM employees WHERE type_id = ?`,
+                [type_id]
             );
 
             return rows;
@@ -56,15 +56,15 @@ const employeesRepository = {
 
     createemployee: async (employeeData) => {
         try {
-            const { full_name, password_hash, type, phone_number, salary } = employeeData;
+            const { full_name, password_hash, type_id, phone_number, salary } = employeeData;
 
             const [result] = await db.query(
-                `INSERT INTO employees (full_name, password_hash, type, phone_number, salary) VALUES (?, ?, ?, ?, ?)`,
-                [full_name, password_hash, type, phone_number, salary]
+                `INSERT INTO employees (full_name, password_hash, type_id, phone_number, salary) VALUES (?, ?, ?, ?, ?)`,
+                [full_name, password_hash, type_id, phone_number, salary]
             );
 
             const [newEmployee] = await db.query(
-                `SELECT id, full_name, type, phone_number, salary, created_at FROM employees WHERE id = ?`,
+                `SELECT id, full_name, type_id, phone_number, salary, created_at FROM employees WHERE id = ?`,
                 [result.insertId]
             );
 
@@ -77,17 +77,17 @@ const employeesRepository = {
 
     updateemployeeById: async (id, employeeData) => {
         try {
-            const { full_name, phone_number, type, salary, password } = employeeData;
+            const { full_name, phone_number, type_id, salary, password } = employeeData;
             let result;
             if (password) {
                 [result] = await db.query(
-                    `UPDATE employees SET full_name = ?, phone_number = ?, type = ?, salary = ? WHERE id = ?`,
-                    [full_name, phone_number, type, salary, id]
+                    `UPDATE employees SET full_name = ?, phone_number = ?, type_id = ?, salary = ? WHERE id = ?`,
+                    [full_name, phone_number, type_id, salary, id]
                 );
             } else {
                 [result] = await db.query(
-                    `UPDATE employees SET full_name = ?, phone_number = ?, type = ?, salary = ? WHERE id = ?`,
-                    [full_name, phone_number, type, salary, id]
+                    `UPDATE employees SET full_name = ?, phone_number = ?, type_id = ?, salary = ? WHERE id = ?`,
+                    [full_name, phone_number, type_id, salary, id]
                 );
             }
 
@@ -96,7 +96,7 @@ const employeesRepository = {
             }
 
             const [updatedEmployee] = await db.query(
-                `SELECT id, full_name, phone_number, type, created_at FROM employees WHERE id = ?`,
+                `SELECT id, full_name, phone_number, type_id, created_at FROM employees WHERE id = ?`,
                 [id]
             );
 

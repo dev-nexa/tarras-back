@@ -27,8 +27,8 @@ const tableRepository = {
     createTable: async (tableData) => {
         try {
             const query = `
-                INSERT INTO tables (qr_code, details, number_of_people, table_number)
-                VALUES (?, ?, ?, ?)
+                INSERT INTO tables (qr_code, details, number_of_people, table_number, location)
+                VALUES (?, ?, ?, ?, ?)
             `;
 
             const queryForQr = 'SELECT * FROM tables WHERE qr_code = ?';
@@ -49,7 +49,8 @@ const tableRepository = {
                 tableData.qr_code,
                 tableData.details,
                 tableData.number_of_people,
-                tableData.table_number
+                tableData.table_number,
+                tableData.location
             ]);
 
             return { id: result.insertId, ...tableData };
@@ -63,7 +64,7 @@ const tableRepository = {
         try {
             const query = `
                 UPDATE tables 
-                SET qr_code = ?, details = ?, number_of_people = ?, table_number = ?
+                SET qr_code = ?, details = ?, number_of_people = ?, table_number = ?, location = ?
                 WHERE id = ?
             `;
             const values = [
@@ -71,6 +72,7 @@ const tableRepository = {
                 tableData.details,
                 tableData.number_of_people,
                 tableData.table_number,
+                tableData.location,
                 id
             ];
     
@@ -105,6 +107,22 @@ const tableRepository = {
             return true;
         } catch (error) {
             console.error("Database error:", error);
+            throw error;
+        }
+    },
+
+    updateTableStatus: async (tableIds) => {
+        try {
+            if (tableIds.length === 0) {
+                throw new Error("No table IDs provided for update.");
+            }
+            
+            const query = `UPDATE tables SET is_taken = 1 WHERE id IN (${tableIds.map(() => '?').join(', ')})`;
+            const [result] = await db.execute(query, [...tableIds]);
+            
+            return result;
+        } catch (error) {
+            console.error('Error updating table status:', error);
             throw error;
         }
     },
@@ -158,6 +176,31 @@ const tableRepository = {
         } catch (error) {
             throw error;
         }
+    },
+
+    tableIdsExist: async (tableIds) => {
+        const query = `SELECT id FROM tables WHERE id IN (${tableIds.map(() => '?').join(', ')})`;
+        const [rows] = await db.execute(query, tableIds);        
+        const existingTableIds = rows.map(row => row.id);
+        return tableIds.every(id => existingTableIds.includes(id));
+    },
+
+    updateTableTakenByEmloyeeId: async (tableIds) => {
+        if (tableIds.length === 0) return;
+    
+        const placeholders = tableIds.map(() => '?').join(', ');
+        const query = `UPDATE tables SET is_taken = 0 WHERE id IN (${placeholders})`;
+    
+        await db.execute(query, [...tableIds]);
+    },
+
+    updateTableTaken: async (tableIds) => {
+        if (tableIds.length === 0) return;
+    
+        const placeholders = tableIds.map(() => '?').join(', ');
+        const query = `UPDATE tables SET is_taken = 1 WHERE id IN (${placeholders})`;
+    
+        await db.execute(query, tableIds);
     }
 };
 

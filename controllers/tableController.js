@@ -1,4 +1,5 @@
 const tableRepository = require('../repositories/tableRepository');
+const dailyTableEmployeesRepository = require('../repositories/dailyTableEmployeesRepository');
 
 const tableController = {
 
@@ -98,7 +99,7 @@ const tableController = {
     resetTables: async (req, res) => {
         try {
             const resetTables = await tableRepository.resetTables();
-            // TODO delete daily_table-employees
+            await dailyTableEmployeesRepository.deleteAllRows();
             
             if(resetTables == -1) {
                 return res.status(400).json({

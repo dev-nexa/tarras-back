@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 
 const validateEmployee = [
     body('full_name').isLength({ min: 3 }).withMessage('الاسم الكامل يجب أن يكون على الأقل 3 حروف'),
-    body('type').isLength({ min: 3 }).withMessage('نوع الموظف يجب أن يكون على الأقل 3 حروف'),
+    body('type_id').isInt({ gt: 0 }).withMessage('معرف نوع الموظف يجب ان يكون اكبر من صفر'),
     body('phone_number').isMobilePhone('any').withMessage('رقم الهاتف غير صالح'),
     body('password').isLength({ min: 8 }).withMessage('كلمة المرور يجب أن تكون على الأقل 8 حروف'),
     body('salary').isNumeric().withMessage('الراتب يجب أن يكون رقماً'),
@@ -47,6 +47,7 @@ const hashPassword = async (req, res, next) => {
 const validateEmoloyeeForUpdate = [
     body('full_name').isLength({ min: 3 }).withMessage('الاسم الكامل يجب أن يكون على الأقل 3 حروف'),
     body('phone_number').isMobilePhone('any').withMessage('رقم الهاتف غير صالح'),
+    body('type_id').isInt({ gt: 0 }).withMessage('معرف نوع الموظف يجب ان يكون اكبر من صفر'),
 
     (req, res, next) => {
         const errors = validationResult(req);
@@ -70,7 +71,7 @@ const validateEmoloyeePasswordForUpdate = [
 ];
 
 const validateEmoloyeeType = [
-    param('type').isLength({ min: 2, max: 50 }).withMessage('نوع الموظف يجب ان يكون بين الحرفين والخمسون حرف'),
+    param('type_id').isInt({ gt: 0 }).withMessage('معرف نوع الموظف يجب ان يكون اكبر من صفر'),
 
     (req, res, next) => {
         const errors = validationResult(req);

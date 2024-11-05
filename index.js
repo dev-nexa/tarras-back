@@ -23,6 +23,8 @@ const invoiceRoutes = require('./routes/invoices');
 const employeesRoutes = require('./routes/employees');
 const locationsRoutes = require('./routes/locations');
 const messagesRoutes = require('./routes/messages');
+const dailyTableEmployeesRoutes = require('./routes/dailyTableEmployees');
+const employeesTypesRoutes = require('./routes/employeesTypes');
 
 // Init
 const app = express();
@@ -82,6 +84,8 @@ app.use('/api', invoiceRoutes);
 app.use('/api', employeesRoutes);
 app.use('/api', locationsRoutes);
 app.use('/api', messagesRoutes);
+app.use('/api', dailyTableEmployeesRoutes);
+app.use('/api', employeesTypesRoutes);
 
 // URIs
 app.get("/", (req, res) => {
