@@ -1,0 +1,69 @@
+يمثل النص أدناه صيغة غرض من ايصال نقطة بيع
+يوجد قيم تقوم خدمة الويب بارجاعها عند عملية تسجيل الدخول, ستقوم بالاشارة اليها في النص  أدناه
+
+
+
+{
+      "id": "9457C42B-8A4D-4CCD-B90E-5D8920BF182D",
+      "posType_ID": "E9043A7F-C628-4A31-B4AE-8C7219BAE22F",		-- ترجع عند تسجيل الدخول
+      "posSession_ID": "71E2386B-9F9F-425D-9445-A660885DABBC",		-- ترجع عند تسجيل الدخول
+      "code": "001",
+      "dateTime": "2024-11-09T09:30:00",
+      "agentAcc_ID": "90340FA3-9A37-4EE5-8C31-68B62E872A31",		-- ترجع عند تسجيل الدخول
+      "mr": "POS MR",
+      "billAcc_ID": "75409166-CD14-4A6F-90CC-5F18C831137B",		-- ترجع عند تسجيل الدخول
+      "store_ID": "6494B356-0684-431C-A59E-6BA1365E6BA6",		-- ترجع عند تسجيل الدخول
+      "cur_ID": "9a2f08c7-36d6-4f62-a81d-4f5a9855911c",			-- ترجع عند تسجيل الدخول
+      "curRate": 1.0,
+      "billPayType": 1,
+      "discRate": 5.0,
+      "discValue": 10.0,
+      "discUsed": 1,
+      "salesman_ID": null,
+      "remarks": "POS head remarks",
+      "total": 100.0,
+      "itemsDisc": 2,
+      "seLevel": 2,
+      "isOnHold": true,
+      "descr": "Sample description",
+      "rstVisit_ID": null,
+      "timeStamp": "2024-11-09T09:35:00",
+      "addRate": 2.5,
+      "addValue": 5.0,
+      "addUsed": 1,
+      "itemsAdd": 3.0,
+      "posItems": [
+        {
+          "id": "986E4411-9A93-4D05-A52A-785B849A1786",
+          "posHead_ID": "9457C42B-8A4D-4CCD-B90E-5D8920BF182D",
+          "mat_ID": "15160965-a754-4997-b20a-025cc63c8e83",
+          "qty": 2.0,
+          "unitPrice": 50.0,
+          "unit": 1,
+          "bonusQty": 0.0,
+          "discRate": 5.0,
+          "freeQty": 1.0,
+          "vatRate": 15.0,
+          "vatValue": 7.5,
+          "batch": "Batch001",
+          "productionDate": "2024-01-01",
+          "expireDate": "2025-01-01",
+          "length": 10.0,
+          "width": 5.0,
+          "height": 2.0,
+          "area": 50.0,
+          "theSize": 100.0,
+          "matCat_ID": null,
+          "matColor_ID": null,
+          "matMeasure_ID": null,
+          "factoryCode": "Factory001",
+          "remarks": "POS item remarks",
+          "rowOrder": 1,
+          "deleted": false,
+          "sNo": "",
+          "isPrinted": true,
+          "addRate": 2.0
+        }
+      ]
+      
+    }
