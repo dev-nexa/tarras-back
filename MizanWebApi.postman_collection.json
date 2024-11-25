@@ -1,0 +1,256 @@
+{
+	"info": {
+		"_postman_id": "ce84ed61-bc9c-41f1-be3a-82575a2d42e1",
+		"name": "MizanWebApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37610448",
+		"_collection_link": "https://watan9.postman.co/workspace/Nexa~db61b59d-1758-48a4-8f1e-e0daa42ce17a/collection/37610448-ce84ed61-bc9c-41f1-be3a-82575a2d42e1?action=share&source=collection_link&creator=37610448"
+	},
+	"item": [
+		{
+			"name": "CheckApi",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:50100/api/check",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "50100",
+					"path": [
+						"api",
+						"check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Gettoken",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:50100/api/SmartDeviceProfile/?xfaf5b87fb1ce797f=123456",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "50100",
+					"path": [
+						"api",
+						"SmartDeviceProfile",
+						""
+					],
+					"query": [
+						{
+							"key": "xfaf5b87fb1ce797f",
+							"value": "123456"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Profile_ID\":\"21424856-8239-43a1-ad56-6b85b78ba70d\",\r\n    \"Password\":\"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:50100/api/Session",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "50100",
+					"path": [
+						"api",
+						"Session"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetMat",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12.0.4100.15",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "21424856-8239-43a1-ad56-6b85b78ba70d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:50100/api/Mat",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "50100",
+					"path": [
+						"api",
+						"Mat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddPosBill",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12.0.4100.15",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "21424856-8239-43a1-ad56-6b85b78ba70d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"id\": \"9457C42B-8A4D-4CCD-B90E-5D8920BF182D\",\r\n      \"posType_ID\": \"a3f2cc6a-45e0-403a-bd68-8d4b7e6d3386\",\r\n      \"posSession_ID\": \"5746a99f-e921-4827-8094-75c2a1b11987\",\r\n      \"code\": \"001\",\r\n      \"dateTime\": \"2024-11-09T09:30:00\",\r\n      \"agentAcc_ID\": \"f78085b5-3e67-4509-8f3f-8be63f65ffab\",\r\n      \"mr\": \"POS MR\",\r\n      \"billAcc_ID\": null,\r\n      \"store_ID\": \"59a575c0-300b-4d1a-93bb-3ebae030ba44\",\r\n      \"cur_ID\": \"9a2f08c7-36d6-4f62-a81d-4f5a9855911c\",\r\n      \"curRate\": 1.0,\r\n      \"billPayType\": 1,\r\n      \"discRate\": 5.0,\r\n      \"discValue\": 10.0,\r\n      \"discUsed\": 1,\r\n      \"salesman_ID\": null,\r\n      \"remarks\": \"POS head remarks\",\r\n      \"total\": 100.0,\r\n      \"itemsDisc\": 2,\r\n      \"debitCostCenter_ID\": null,\r\n      \"creditCostCenter_ID\": null,\r\n      \"seLevel\": 2,\r\n      \"isOnHold\": true,\r\n      \"descr\": \"مرسلة من برنامج آخر\",\r\n      \"rstVisit_ID\": null,\r\n      \"timeStamp\": \"2024-11-09T09:35:00\",\r\n      \"addRate\": 2.5,\r\n      \"addValue\": 5.0,\r\n      \"addUsed\": 1,\r\n      \"itemsAdd\": 3.0,\r\n      \"posItems\": [\r\n        {\r\n          \"id\": \"986E4411-9A93-4D05-A52A-785B849A1786\",\r\n          \"posHead_ID\": \"9457C42B-8A4D-4CCD-B90E-5D8920BF182D\",\r\n          \"mat_ID\": \"cdffe6ae-781a-48b1-a6f3-16764f580a82\",\r\n          \"qty\": 2.0,\r\n          \"unitPrice\": 50.0,\r\n          \"unit\": 1,\r\n          \"bonusQty\": 0.0,\r\n          \"discRate\": 5.0,\r\n          \"freeQty\": 1.0,\r\n          \"vatRate\": 15.0,\r\n          \"vatValue\": 7.5,\r\n          \"batch\": \"Batch001\",\r\n          \"productionDate\": \"2024-01-01\",\r\n          \"expireDate\": \"2025-01-01\",\r\n          \"length\": 10.0,\r\n          \"width\": 5.0,\r\n          \"height\": 2.0,\r\n          \"area\": 50.0,\r\n          \"theSize\": 100.0,\r\n          \"matCat_ID\": null,\r\n          \"matColor_ID\": null,\r\n          \"matMeasure_ID\": null,\r\n          \"factoryCode\": \"Factory001\",\r\n          \"remarks\": \"POS item remarks\",\r\n          \"rowOrder\": 1,\r\n          \"deleted\": false,\r\n          \"sNo\": \"S001\",\r\n          \"isPrinted\": true,\r\n          \"addRate\": 2.0\r\n        }\r\n      ]\r\n      \r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:50100/api/PosHead",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "50100",
+					"path": [
+						"api",
+						"PosHead"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPosBill",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12.0.4100.15",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "21424856-8239-43a1-ad56-6b85b78ba70d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "xfaf5b87fb1ce797f",
+						"value": "9457C42B-8A4D-4CCD-B90E-5D8920BF182D",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "127.0.0.1:50100/api/PosHead",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "50100",
+					"path": [
+						"api",
+						"PosHead"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTable",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12.0.4100.15",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "21424856-8239-43a1-ad56-6b85b78ba70d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:50100/api/rstTable",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "50100",
+					"path": [
+						"api",
+						"rstTable"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

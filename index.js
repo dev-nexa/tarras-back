@@ -25,6 +25,7 @@ const locationsRoutes = require('./routes/locations');
 const messagesRoutes = require('./routes/messages');
 const dailyTableEmployeesRoutes = require('./routes/dailyTableEmployees');
 const employeesTypesRoutes = require('./routes/employeesTypes');
+const resarvationsRoutes = require('./routes/resarvations');
 
 // Init
 const app = express();
@@ -86,6 +87,7 @@ app.use('/api', locationsRoutes);
 app.use('/api', messagesRoutes);
 app.use('/api', dailyTableEmployeesRoutes);
 app.use('/api', employeesTypesRoutes);
+app.use('/api', resarvationsRoutes);
 
 // URIs
 app.get("/", (req, res) => {
