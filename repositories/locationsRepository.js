@@ -27,7 +27,7 @@ module.exports = {
         try {
             const query = 'SELECT * FROM locations WHERE id = ?';
             const [locations] = await db.execute(query, [id]);
-            return locations[0];
+            return locations.length ? locations[0] : null;
         } catch (error) {
             console.error('Database error:', error);
             throw error;
@@ -54,5 +54,11 @@ module.exports = {
             console.error('Database error:', error);
             throw error;
         }
-    }
+    },
+
+    getDeliveryPriceByLocationId: async (locationId) => {
+        const query = 'SELECT price FROM locations WHERE id = ?';
+        const [rows] = await db.execute(query, [locationId]);
+        return rows.length ? rows[0].price : null;
+    },
 };

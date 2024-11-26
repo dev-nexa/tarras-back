@@ -1,6 +1,13 @@
 const db = require('../config/db');
 
 const invoiceRepository = {
+    createInvoice: async (invoiceData) => {
+        try {
+
+        } catch (error) {
+
+        }
+    },
     
     getAllInvoices: async () => {
         try {
@@ -18,13 +25,6 @@ const invoiceRepository = {
         }
     },
 
-    createInvoice: async (invoiceData) => {
-        try {
-
-        } catch (error) {
-
-        }
-    },
 
     updateInvoiceById: async (id, invoiceData) => {
         try {

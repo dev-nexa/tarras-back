@@ -3,6 +3,7 @@ CREATE TABLE employees (
     full_name VARCHAR(50) NOT NULL UNIQUE,
     phone_number VARCHAR(15) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
+    xfaf5b87fb1ce797f VARCHAR(255) NULL,
     type_id INT NOT NULL,
     salary DECIMAL(15, 2),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

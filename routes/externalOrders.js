@@ -1,16 +1,17 @@
 const express = require('express');
 const router = express.Router();
+const externalOrderController = require('../controllers/externalOrderController');
+const {
+    validateCreateOrder,
+    validateStateBody,
+    validateOrderIdParam,
+    validateCustomerIdParam,
+} = require('../middlewares/externalOrderMiddleware');
 
-// router.get('/external-orders', externalOrderController.getAllOrders);
-
-// router.get('/external-orders/:id', externalOrderController.getOrderById);
-
-// router.post('/external-orders', externalOrderController.createOrder);
-
-// router.put('/external-orders/:id', externalOrderController.updateOrderById);
-
-// router.delete('/external-orders/:id', externalOrderController.deleteOrderById);
-
-// router.get('/external-orders/customer/:customerId', externalOrderController.getOrdersByCustomerId);
+router.post('/external-order', validateCreateOrder, externalOrderController.createOrder);
+router.get('/external-orders', validateStateBody, externalOrderController.getAllOrders);
+router.get('/external-orders-by-id/:id', validateOrderIdParam, externalOrderController.getOrderById);
+router.get('/external-orders-by-customer-id/:customerId', validateCustomerIdParam, externalOrderController.getOrdersByCustomerId);
+router.put('/external-order/:id', validateStateBody, validateOrderIdParam, externalOrderController.UpdateOrderStateById);
 
 module.exports = router;

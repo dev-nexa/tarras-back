@@ -3,7 +3,7 @@ CREATE TABLE order_items (
     external_order_id INT, 
     internal_order_id INT,
     product_id INT NOT NULL,
-    order_type ENUM('خارجي', 'داخلي'),
+    order_type VARCHAR(256) NOT NULL,
     quantity INT NOT NULL DEFAULT 1,
     total_amount DECIMAL(10, 2) NOT NULL,
     issued_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

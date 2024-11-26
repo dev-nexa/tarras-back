@@ -1,5 +1,6 @@
 CREATE TABLE products (
     id INT PRIMARY KEY,
+    mizan_id VARCHAR(100) NOT NULL, -- TODO
     product_name VARCHAR(100) NOT NULL,
     description VARCHAR(200),
     price DECIMAL(10, 2) NOT NULL,

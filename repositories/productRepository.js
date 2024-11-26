@@ -103,7 +103,13 @@ const productRepository = {
       console.error("Database error:", error);
       throw error;
     }
-  }
+  },
+
+  getProductPriceById: async (productId) => {
+    const query = 'SELECT price FROM products WHERE id = ?';
+    const [rows] = await db.execute(query, [productId]);
+    return rows.length ? rows[0].price : null;
+  },
 
 };
 

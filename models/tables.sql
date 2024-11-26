@@ -6,5 +6,5 @@ CREATE TABLE tables (
     table_number INT NOT NULL UNIQUE,
     location VARCHAR(50) NOT NULL DEFAULT 'غير محدد',
     open_close BOOLEAN NOT NULL DEFAULT 0,
-    is_taken BOOLEAN NOT NULL DEFAULT 0,
+    is_taken BOOLEAN NOT NULL DEFAULT 0
 );

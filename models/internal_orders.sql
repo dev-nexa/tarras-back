@@ -9,19 +9,3 @@ CREATE TABLE internal_orders (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (table_id) REFERENCES tables(id) ON DELETE CASCADE
 );
-
-1. put (change-table-state/:table_id/:1)
-2. post new internal_orders with {
-    table_id,
-    total_price: 0,
-    order_state: 0, // الميزان
-    open_close: 1,
-}
-3. post new order_items with {
-    internal_order_id from 2,
-    product_id // مياه ,
-    order_type: داخلي,
-    quantity,
-    total_amount: // سعر المياه ,
-}
-4. 
